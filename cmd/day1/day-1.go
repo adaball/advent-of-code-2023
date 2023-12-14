@@ -1,44 +1,18 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
+	"github.com/adamball/advent-of-code-2023/util"
 	"log"
-	"os"
 	"regexp"
 	"strconv"
 	"strings"
 )
 
 func main() {
-	lines := readInput()
+	lines := util.ReadInput(1)
 	partOne(lines)
 	partTwo(lines)
-}
-
-func readInput() []string {
-	fileSystem := os.DirFS(".")
-
-	file, err := fileSystem.Open("input/day-1")
-	defer func() {
-		err = file.Close()
-		if err != nil {
-			log.Fatalf("error closing input file: %+v", err)
-		}
-		log.Print("input file closed")
-	}()
-
-	if err != nil {
-		log.Fatalf("error opening input file: %+v", err)
-	}
-
-	scanner := bufio.NewScanner(file)
-	lines := make([]string, 0)
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
-	}
-
-	return lines
 }
 
 // this is a much more involved way of solving it, but I somehow wasn't getting any success using regex alone 🤷‍
